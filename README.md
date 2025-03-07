@@ -23,7 +23,7 @@ E-Commerce Next.js adalah platform web untuk jual beli produk secara online deng
 ### 📢 Promo & Diskon  
 - Halaman khusus untuk menampilkan **promo dan diskon terbaru**.  
 
-### 👥 Profil Tim  
+### 👥 Team Profile  
 - Halaman khusus menampilkan **profil anggota tim**, lengkap dengan foto dan identitas.  
 
 ### 📱 Desain Responsif  
