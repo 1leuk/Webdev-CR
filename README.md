@@ -2,7 +2,10 @@
 
 ## 📌 Deskripsi  
 E-Commerce Next.js adalah platform web untuk jual beli produk secara online dengan pengalaman pengguna yang cepat, responsif, dan mudah digunakan. Website ini memungkinkan pengguna untuk menjelajahi berbagai produk, menambahkannya ke keranjang, serta menikmati promo menarik.  
-
+## Contributor :
+- [Aurel](https://github.com/aureliasyrch)  
+- [Ridho](https://github.com/ridhomul)
+  
 ## 🚀 Fitur Utama  
 
 ### 🛒 Jelajahi & Belanja Produk  
