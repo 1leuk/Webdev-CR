@@ -1,45 +1,57 @@
-# **E-Commerce Next.js**  
+# **E-Commerce Next.js**
 
-## 📌 Deskripsi  
-E-Commerce Next.js adalah platform web untuk jual beli produk secara online dengan pengalaman pengguna yang cepat, responsif, dan mudah digunakan. Website ini memungkinkan pengguna untuk menjelajahi berbagai produk, menambahkannya ke keranjang, serta menikmati promo menarik.  
+## 📌 Deskripsi
+
+E-Commerce Next.js adalah platform web untuk jual beli produk secara online dengan pengalaman pengguna yang cepat, responsif, dan mudah digunakan. Website ini memungkinkan pengguna untuk menjelajahi berbagai produk, menambahkannya ke keranjang, serta menikmati promo menarik.
+
 ## Contributor :
-- [Aurel](https://github.com/aureliasyrch)  
-- [Ridho](https://github.com/ridhomul)
-  
-## 🚀 Fitur Utama  
 
-### 🛒 Jelajahi & Belanja Produk  
-- Pengguna dapat mencari dan menelusuri berbagai produk berdasarkan kategori.  
-- Halaman produk menampilkan **deskripsi, harga, dan opsi pembelian**.  
+- [Aurel](https://github.com/aureliasyrch)
+- [Ridho Anugrah M](https://github.com/ridhomul)
 
-### 🔑 Autentikasi Pengguna  
-- Pengguna dapat **mendaftar** dan **masuk** untuk menyimpan preferensi dan riwayat belanja.  
-- Admin memiliki akses khusus untuk **mengelola produk**.  
+## 🚀 Fitur Utama
 
-### 🛍 Keranjang Belanja & Checkout  
-- Produk dapat ditambahkan ke **keranjang** dengan jumlah yang bisa disesuaikan.  
-- Pengguna dapat melakukan **checkout** setelah mengisi detail pemesanan.  
+### 🛒 Jelajahi & Belanja Produk
 
-### 🌙 Mode Gelap (Dark Mode)  
-- Pengguna dapat mengaktifkan atau menonaktifkan **mode gelap** sesuai preferensi.  
+- Pengguna dapat mencari dan menelusuri berbagai produk berdasarkan kategori.
+- Halaman produk menampilkan **deskripsi, harga, dan opsi pembelian**.
 
-### 📢 Promo & Diskon  
-- Halaman khusus untuk menampilkan **promo dan diskon terbaru**.  
+### 🔑 Autentikasi Pengguna
 
-### 👥 Team Profile  
-- Halaman khusus menampilkan **profil anggota tim**, lengkap dengan foto dan identitas.  
+- Pengguna dapat **mendaftar** dan **masuk** untuk menyimpan preferensi dan riwayat belanja.
+- Admin memiliki akses khusus untuk **mengelola produk**.
 
-### 📱 Desain Responsif  
-- Website dapat diakses dengan baik di **desktop, tablet, dan perangkat mobile**.  
+### 🛍 Keranjang Belanja & Checkout
 
-## 🛠 Tech Stack yang Digunakan  
-- **Next.js** (React Framework)  
-- **Tailwind CSS** (Styling)  
-- **Context API / Zustand** (State Management untuk Dark Mode)  
-- **Vercel** (Deployment)  
+- Produk dapat ditambahkan ke **keranjang** dengan jumlah yang bisa disesuaikan.
+- Pengguna dapat melakukan **checkout** setelah mengisi detail pemesanan.
 
-## 🚀 Cara Menjalankan Proyek  
+### 🌙 Mode Gelap (Dark Mode)
 
-1. **Clone repository ini**  
+- Pengguna dapat mengaktifkan atau menonaktifkan **mode gelap** sesuai preferensi.
+
+### 📢 Promo & Diskon
+
+- Halaman khusus untuk menampilkan **promo dan diskon terbaru**.
+
+### 👥 Team Profile
+
+- Halaman khusus menampilkan **profil anggota tim**, lengkap dengan foto dan identitas.
+
+### 📱 Desain Responsif
+
+- Website dapat diakses dengan baik di **desktop, tablet, dan perangkat mobile**.
+
+## 🛠 Tech Stack yang Digunakan
+
+- **Next.js** (React Framework)
+- **Tailwind CSS** (Styling)
+- **Context API / Zustand** (State Management untuk Dark Mode)
+- **Vercel** (Deployment)
+
+## 🚀 Cara Menjalankan Proyek
+
+1. **Clone repository ini**
    ```bash
    git clone https://github.com/1leuk/Webdev-CR
+   ```
