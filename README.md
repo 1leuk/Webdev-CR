@@ -16,10 +16,6 @@ E-Commerce Next.js adalah platform web untuk jual beli produk secara online deng
 - Pengguna dapat mencari dan menelusuri berbagai produk berdasarkan kategori.
 - Halaman produk menampilkan **deskripsi, harga, dan opsi pembelian**.
 
-### 🔑 Autentikasi Pengguna
-
-- Pengguna dapat **mendaftar** dan **masuk** untuk menyimpan preferensi dan riwayat belanja.
-- Admin memiliki akses khusus untuk **mengelola produk**.
 
 ### 🛍 Keranjang Belanja & Checkout
 
