@@ -1,17 +1,64 @@
 "use client";
-import { useRouter } from "next/navigation"; // Import router
+import { useState } from "react"; // Import useState
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/button";
 import useCartStore from "@/store/cartStore";
 
 export default function Cart() {
-  const router = useRouter(); // Initialize router
+  const router = useRouter();
   const { items, removeFromCart, updateQty } = useCartStore((state) => state);
+  const [couponCode, setCouponCode] = useState(""); // State for coupon code input
+  const [discount, setDiscount] = useState(0); // State for discount amount
+  const [appliedCoupon, setAppliedCoupon] = useState(""); // State to track applied coupon
+  const [couponError, setCouponError] = useState(""); // State for coupon error messages
+
+  const availableCoupons: { [key: string]: number } = {
+    SAVE10: 0.1, // 10% off
+    SAVE20: 0.2, // 20% off
+    WELCOME: 0.15, // 15% off
+    FREESHIP: 0.05, // 5% off
+  };
+
   const subtotal = items.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
-  const tax = subtotal * 0.1; // Assuming 10% tax
-  const total = subtotal + tax;
+
+  // Apply discount to subtotal
+  const discountAmount = subtotal * discount;
+  const discountedSubtotal = subtotal - discountAmount;
+  const tax = discountedSubtotal * 0.1; // Assuming 10% tax
+  const total = discountedSubtotal + tax;
+
+  // Handle coupon code application
+  const handleApplyCoupon = () => {
+    // Reset error message
+    setCouponError("");
+
+    // Check if coupon is valid
+    if (couponCode.trim() === "") {
+      setCouponError("Please enter a coupon code");
+      return;
+    }
+
+    const discountRate = availableCoupons[couponCode.toUpperCase()];
+
+    if (discountRate) {
+      setDiscount(discountRate);
+      setAppliedCoupon(couponCode.toUpperCase());
+      setCouponCode(""); // Clear input field
+    } else {
+      setCouponError("Invalid coupon code");
+      setDiscount(0);
+      setAppliedCoupon("");
+    }
+  };
+
+  // Handle coupon removal
+  const handleRemoveCoupon = () => {
+    setDiscount(0);
+    setAppliedCoupon("");
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -97,18 +144,79 @@ export default function Cart() {
                 <h2 className="text-xl font-semibold text-gray-800 mb-4">
                   Order Summary
                 </h2>
+
+                {/* Coupon Code Section */}
+                <div className="mb-4 border-b pb-4">
+                  <h3 className="text-lg font-medium mb-2">Apply Discount</h3>
+
+                  {appliedCoupon ? (
+                    <div className="flex items-center justify-between bg-green-50 p-2 rounded border border-green-200">
+                      <div>
+                        <span className="font-medium text-green-700">
+                          {appliedCoupon}
+                        </span>
+                        <span className="ml-2 text-green-600">
+                          ({discount * 100}% off)
+                        </span>
+                      </div>
+                      <Button
+                        onClick={handleRemoveCoupon}
+                        variant="outline"
+                        size="sm"
+                        className="text-red-500 hover:text-red-700"
+                      >
+                        Remove
+                      </Button>
+                    </div>
+                  ) : (
+                    <div>
+                      <div className="flex">
+                        <input
+                          type="text"
+                          value={couponCode}
+                          onChange={(e) => setCouponCode(e.target.value)}
+                          placeholder="Enter coupon code"
+                          className="flex-grow p-2 border border-gray-300 rounded-l-md focus:ring focus:ring-blue-200 focus:outline-none"
+                        />
+                        <Button
+                          onClick={handleApplyCoupon}
+                          className="rounded-l-none bg-blue-500 hover:bg-blue-600"
+                        >
+                          Apply
+                        </Button>
+                      </div>
+                      {couponError && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {couponError}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+
                 <div className="flex justify-between mb-2">
                   <span>Subtotal</span>
                   <span>${subtotal.toFixed(2)}</span>
                 </div>
+
+                {/* Discount line (only shows when discount is applied) */}
+                {discount > 0 && (
+                  <div className="flex justify-between mb-2 text-green-600">
+                    <span>Discount ({discount * 100}%)</span>
+                    <span>-${discountAmount.toFixed(2)}</span>
+                  </div>
+                )}
+
                 <div className="flex justify-between mb-2">
                   <span>Tax</span>
                   <span>${tax.toFixed(2)}</span>
                 </div>
+
                 <div className="flex justify-between font-semibold text-lg mt-4 pt-4 border-t">
                   <span>Total</span>
                   <span>${total.toFixed(2)}</span>
                 </div>
+
                 <Button
                   className="w-full mt-6"
                   onClick={() => router.push("/checkout")}

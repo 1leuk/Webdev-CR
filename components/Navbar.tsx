@@ -39,6 +39,7 @@ export default function Navbar() {
           {[
             { name: "Home", path: "/home" },
             { name: "Shop", path: "/home/shop" },
+            { name: "Discount", path: "/discount" },
             { name: "Team", path: "/team" },
           ].map((item) => (
             <Link
@@ -51,7 +52,7 @@ export default function Navbar() {
               {item.name}
             </Link>
           ))}
-          
+
           {/* Cart Icon */}
           <Link
             href="/cart"
@@ -86,9 +87,12 @@ export default function Navbar() {
               )}
             </div>
           </Link>
-          
+
           {/* Menu Toggle */}
-          <button className="text-2xl text-white" onClick={() => setIsOpen(!isOpen)}>
+          <button
+            className="text-2xl text-white"
+            onClick={() => setIsOpen(!isOpen)}
+          >
             {isOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>
@@ -100,6 +104,7 @@ export default function Navbar() {
           {[
             { name: "Home", path: "/home" },
             { name: "Shop", path: "/home/shop" },
+            { name: "Discount", path: "/discount" },
             { name: "Team", path: "/team" },
           ].map((item) => (
             <Link

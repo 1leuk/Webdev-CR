@@ -2,10 +2,10 @@
 
 export default function TeamPage() {
   const teamMembers = [
-    { name: "Sayyid Faqih", role: "Founder & CEO" },
-    { name: "Aurelia Aisya Rachma", role: "Lead Developer" },
-    { name: "Alice Johnson", role: "UI/UX Designer" },
-    { name: "Bob Brown", role: "Marketing Manager" },
+    { name: "Sayyid Faqih", role: "101012330200" },
+    { name: "Aurelia Aisya Rachma", role: "101012300251" },
+    { name: "Ridho Anugrah Mulyadi", role: "101032300028" },
+
   ];
 
   return (
