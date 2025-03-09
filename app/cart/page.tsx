@@ -1,19 +1,10 @@
 "use client";
-import Image from "next/image";
-import { useRouter } from "next/navigation"; // Import the router
+import { useRouter } from "next/navigation"; // Import router
 import { Button } from "@/components/button";
 import useCartStore from "@/store/cartStore";
 
-interface CartItem {
-  id: number;
-  title: string;
-  price: number;
-  quantity: number;
-  image: string;
-}
-
 export default function Cart() {
-  const router = useRouter(); // Initialize the router
+  const router = useRouter(); // Initialize router
   const { items, removeFromCart, updateQty } = useCartStore((state) => state);
   const subtotal = items.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -25,15 +16,28 @@ export default function Cart() {
   return (
     <div className="min-h-screen bg-gray-100">
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">
-          Your Cart({items.reduce((sum, i) => sum + i.quantity, 0)})
-        </h1>
+        {/* Header Section with Back Button on the Left */}
+        <div className="flex items-center mb-6">
+          {/* 🔙 Back Button (Left Side) */}
+          <Button
+            onClick={() => router.push("/home")}
+            className="mr-4 px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400"
+          >
+            ← Back to Home
+          </Button>
+          <h1 className="text-3xl font-bold text-gray-900">
+            Your Cart ({items.reduce((sum, i) => sum + i.quantity, 0)})
+          </h1>
+        </div>
+
         {items.length === 0 ? (
           <div className="bg-white p-6 rounded-lg shadow text-center">
             <div className="text-8xl mb-4">🛒</div>
             <h2 className="text-2xl mb-4">Your cart is empty</h2>
-            <p className="text-gray-500 mb-6">Looks like you haven't added anything to your cart yet.</p>
-            <Button 
+            <p className="text-gray-500 mb-6">
+              Looks like you haven't added anything to your cart yet.
+            </p>
+            <Button
               onClick={() => router.push("/home/shop")}
               className="bg-blue-600 hover:bg-blue-700"
             >
@@ -105,9 +109,9 @@ export default function Cart() {
                   <span>Total</span>
                   <span>${total.toFixed(2)}</span>
                 </div>
-                <Button 
+                <Button
                   className="w-full mt-6"
-                  onClick={() => router.push("/checkout")} // Add navigation to checkout
+                  onClick={() => router.push("/checkout")}
                 >
                   Proceed to Checkout
                 </Button>

@@ -1,114 +1,98 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/button";
-import useCartStore from "@/store/cartStore";
-import { Product } from "@/types/types";
-import { Toaster } from "react-hot-toast";
-import { getProductById } from "@/app/actions/product";
+import Link from "next/link";
+import Image from "next/image";
+// ✅ Import Footer
 
-export default function ProductDetails({ params }: { params: { id: string } }) {
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
-  const { addToCart } = useCartStore((state) => state);
-  const router = useRouter();
-
-  useEffect(() => {
-    async function fetchProduct() {
-      try {
-        const data = await getProductById(params.id);
-        setProduct(data);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    if (params.id) {
-      fetchProduct();
-    }
-  }, [params.id]);
-
-  const handleAddToCart = () => {
-    if (product) {
-      addToCart(product);
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl">Loading product...</div>
-      </div>
-    );
-  }
-
-  if (!product) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <div className="text-xl mb-4">Product not found</div>
-        <Button onClick={() => router.push("/home/shop")}>Back to Shop</Button>
-      </div>
-    );
-  }
-
+export default function HomePage() {
   return (
-    <div className="min-h-screen pt-24 pb-10 px-4">
-      <Toaster position="top-right" />
-      <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="md:flex">
-          <div className="md:flex-shrink-0 md:w-1/2 h-96 relative">
-            <img
-              className="w-full h-full object-contain object-center"
-              src={product.image}
-              alt={product.title}
-            />
-          </div>
-          <div className="p-8 md:w-1/2">
-            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-              {product.category}
-            </div>
-            <h1 className="text-3xl font-bold text-gray-900 mt-2 mb-4">{product.title}</h1>
-            <p className="text-gray-600 mb-6">{product.description}</p>
-            <div className="flex items-center mb-4">
-              <div className="flex items-center">
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    className={`w-5 h-5 ${
-                      i < Math.floor(product.rating.rate)
-                        ? "text-yellow-400"
-                        : "text-gray-300"
-                    }`}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-                <span className="ml-2 text-gray-600">
-                  {product.rating.rate} ({product.rating.count} reviews)
-                </span>
-              </div>
-            </div>
-            <div className="text-2xl font-bold text-gray-900 mb-6">${product.price.toFixed(2)}</div>
-            <div className="flex space-x-4">
-              <Button onClick={handleAddToCart} className="px-6 py-2">
-                Add to Cart
-              </Button>
-              <Button
-                onClick={() => router.push("/cart")}
-                variant="outline"
-                className="px-6 py-2"
-              >
-                View Cart
-              </Button>
-            </div>
-          </div>
+    <div className="bg-gray-100 min-h-screen flex flex-col">
+      {/* Hero Section */}
+      <section className="relative text-white py-16 px-6 mt-20">
+        {/* Background Image */}
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src="/assets/banner.jpg"
+            alt="Gaming Banner"
+            fill
+            className="object-cover opacity-60"
+            priority
+          />
         </div>
-      </div>
+
+        {/* Content */}
+        <div className="relative max-w-6xl mx-auto flex flex-col items-center text-center">
+          <h2 className="text-4xl font-bold">Latest Style For Your Fashion Needs</h2>
+          <p className="text-lg text-yellow-400 mt-2">Special Discount - 20% Off</p>
+          <button className="mt-6 px-6 py-3 bg-yellow-500 text-black rounded-lg font-semibold hover:bg-yellow-600">
+            Shop Now
+          </button>
+        </div>
+      </section>
+
+      {/* Service Highlights */}
+      <section className="max-w-6xl mx-auto my-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        {[
+          { title: "Free Shipping Worldwide", desc: "Lorem ipsum is simply dummy text." },
+          { title: "24/7 Customer Service", desc: "Lorem ipsum is simply dummy text." },
+          { title: "Money Back Guarantee", desc: "Lorem ipsum is simply dummy text." },
+        ].map((service, index) => (
+          <div key={index} className="p-4 bg-white shadow-md rounded-lg">
+            <h3 className="font-bold text-lg">{service.title}</h3>
+            <p className="text-gray-600 text-sm">{service.desc}</p>
+          </div>
+        ))}
+      </section>
+
+      {/* Category Promotions */}
+      <section className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-8">
+        {[
+          { title: "Fjallraven - Foldsack", img: "/assets/tas.jpg", link: "/assets" },
+          { title: "Mens Casual Premium Slim Fit T-Shirts", img: "/assets/baju.jpg", link: "/assets" },
+          { title: "Mens Cotton Jacket", img: "/assets/baju2.jpg", link: "/assets" },
+          { title: "Mens Casual Slim Fit", img: "/assets/baju3.jpg", link: "/assets" },
+          { title: "John Hardy Women's Legends Naga", img: "/assets/gelang1.jpg", link: "/assets" },
+        ].map((promo, index) => (
+          <Link key={index} href={promo.link} className="relative group">
+            <Image 
+              src={promo.img} 
+              alt={promo.title} 
+              width={300} 
+              height={200} 
+              className="w-full h-48 object-cover rounded-lg" 
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition">
+              {promo.title}
+            </div>
+          </Link>
+        ))}
+      </section>
+
+      {/* Top Products */}
+      <section className="max-w-6xl mx-auto my-12 flex-grow">
+        <h2 className="text-2xl font-bold">Top Products</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
+          {[
+            { name: "Solid Gold Petite Micropave", price: "$168.00", img: "/assets/cincin1.jpg" },
+            { name: "White Gold Plated Princess", price: "$9.99", img: "/assets/cincin2.jpg" },
+            { name: "Pierced Owl Rose Gold Plated Stainless Steel Double", price: "$10.99", img: "/assets/anting.jpg" },
+            { name: "Fjallraven - Foldsack No. 1 Backpack", price: "$109.95", img: "/assets/tas.jpg" },
+          ].map((product, index) => (
+            <div key={index} className="bg-white p-4 shadow-md rounded-lg">
+              <Image 
+                src={product.img} 
+                alt={product.name} 
+                width={200} 
+                height={200} 
+                className="w-full h-40 object-cover rounded-md" 
+              />
+              <h3 className="text-lg font-bold mt-2">{product.name}</h3>
+              <p className="text-blue-600 font-semibold">{product.price}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
     </div>
   );
 }

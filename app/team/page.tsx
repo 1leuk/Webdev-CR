@@ -2,8 +2,8 @@
 
 export default function TeamPage() {
   const teamMembers = [
-    { name: "John Doe", role: "Founder & CEO" },
-    { name: "Jane Smith", role: "Lead Developer" },
+    { name: "Sayyid Faqih", role: "Founder & CEO" },
+    { name: "Aurelia Aisya Rachma", role: "Lead Developer" },
     { name: "Alice Johnson", role: "UI/UX Designer" },
     { name: "Bob Brown", role: "Marketing Manager" },
   ];
