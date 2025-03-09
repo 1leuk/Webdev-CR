@@ -71,10 +71,10 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-10 px-4 bg-gray-50">
+    <div className="min-h-screen pt-24 pb-10 px-4 bg-[#1a1f2e]">
       <Toaster position="top-right" />
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Checkout</h1>
+        <h1 className="text-3xl font-bold text-white mb-8">Checkout</h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Checkout Form */}

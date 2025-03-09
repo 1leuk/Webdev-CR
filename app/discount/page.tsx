@@ -74,7 +74,7 @@ export default function DiscountsPage() {
   const copyToClipboard = (code: string) => {
     navigator.clipboard.writeText(code);
     setCopiedCode(code);
-    setTimeout(() => setCopiedCode(null), 2000); // Reset after 2 seconds
+    setTimeout(() => setCopiedCode(null), 2000);
   };
 
   // Check if coupon is applicable to current cart
@@ -92,30 +92,22 @@ export default function DiscountsPage() {
     return acc;
   }, {} as Record<string, Coupon[]>);
 
-  // Format category name for display
-  const formatCategoryName = (category: string) => {
-    return category
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-  };
-
   return (
-    <div className="min-h-screen bg-gray-100 pt-16">
+    <div className="min-h-screen bg-gray-900 text-gray-300 pt-16">
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="flex items-center mb-8">
           <Button
             onClick={() => router.push("/home")}
-            className="mr-4 px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400"
+            className="mr-4 px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600"
           >
             ← Back
           </Button>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="text-3xl font-bold text-white">
               Available Discounts
             </h1>
-            <p className="text-gray-600 mt-1">
+            <p className="text-gray-400 mt-1">
               Use these coupon codes at checkout to save on your purchase
             </p>
           </div>
@@ -124,8 +116,8 @@ export default function DiscountsPage() {
         {/* Coupon Categories */}
         {Object.keys(groupedCoupons).map((category) => (
           <div key={category} className="mb-8">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">
-              {formatCategoryName(category)} Discounts
+            <h2 className="text-xl font-semibold text-yellow-400 mb-4">
+              {category.charAt(0).toUpperCase() + category.slice(1)} Discounts
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {groupedCoupons[category].map((coupon) => {
@@ -134,11 +126,11 @@ export default function DiscountsPage() {
                 return (
                   <div
                     key={coupon.code}
-                    className={`bg-white rounded-lg shadow-md overflow-hidden ${
-                      !isApplicable ? "opacity-70" : ""
+                    className={`bg-gray-800 rounded-lg shadow-lg overflow-hidden ${
+                      !isApplicable ? "opacity-60" : ""
                     }`}
                   >
-                    {/* Coupon Header with discount percentage */}
+                    {/* Coupon Header */}
                     <div className="bg-yellow-500 p-3 flex justify-between items-center">
                       <h3 className="text-lg font-bold text-gray-900">
                         {(coupon.discountRate * 100).toFixed(0)}% OFF
@@ -153,12 +145,12 @@ export default function DiscountsPage() {
 
                     {/* Coupon Details */}
                     <div className="p-4">
-                      <p className="text-gray-700 mb-3">{coupon.description}</p>
+                      <p className="text-gray-300 mb-3">{coupon.description}</p>
 
                       {coupon.minPurchase && (
                         <div
                           className={`text-sm mb-3 ${
-                            isApplicable ? "text-green-600" : "text-gray-500"
+                            isApplicable ? "text-green-400" : "text-gray-500"
                           }`}
                         >
                           {isApplicable
@@ -169,12 +161,12 @@ export default function DiscountsPage() {
 
                       {/* Code Copy Section */}
                       <div className="mt-2 flex items-center justify-between">
-                        <div className="flex-1 bg-gray-100 rounded px-3 py-2 text-gray-800 font-mono">
+                        <div className="flex-1 bg-gray-700 rounded px-3 py-2 text-white font-mono">
                           {coupon.code}
                         </div>
                         <Button
                           onClick={() => copyToClipboard(coupon.code)}
-                          className="ml-2 bg-blue-600 hover:bg-blue-700 flex items-center"
+                          className="ml-2 bg-blue-500 hover:bg-blue-600 flex items-center"
                           size="sm"
                         >
                           <FiCopy className="mr-1" />
@@ -189,7 +181,7 @@ export default function DiscountsPage() {
                             copyToClipboard(coupon.code);
                             router.push("/cart");
                           }}
-                          className="w-full flex items-center justify-center"
+                          className="w-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center"
                           disabled={!isApplicable}
                         >
                           <FiExternalLink className="mr-2" />
@@ -206,15 +198,17 @@ export default function DiscountsPage() {
 
         {/* Empty State */}
         {Object.keys(groupedCoupons).length === 0 && (
-          <div className="bg-white p-8 rounded-lg shadow text-center">
+          <div className="bg-gray-800 p-8 rounded-lg shadow text-center">
             <div className="text-6xl mb-4">🎟️</div>
-            <h2 className="text-2xl mb-4">No discounts available right now</h2>
-            <p className="text-gray-500 mb-6">
+            <h2 className="text-2xl mb-4 text-white">
+              No discounts available right now
+            </h2>
+            <p className="text-gray-400 mb-6">
               Check back soon for special offers and promotions!
             </p>
             <Button
               onClick={() => router.push("/home/shop")}
-              className="bg-blue-600 hover:bg-blue-700"
+              className="bg-blue-500 hover:bg-blue-600"
             >
               Continue Shopping
             </Button>

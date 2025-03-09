@@ -3,37 +3,57 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-10">
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Left Section - Brand Name */}
-        <div>
-          <h2 className="text-2xl font-bold">ApexGear</h2>
-          <div className="flex space-x-4 mt-3">
-            <Link href="#">
-              <Image src="/assets/facebook.svg" alt="Facebook" width={24} height={24} />
-            </Link>
-            <Link href="#">
-              <Image src="/assets/linkedin.svg" alt="LinkedIn" width={24} height={24} />
-            </Link>
-            <Link href="#">
-              <Image src="/assets/instagram.svg" alt="Instagram" width={24} height={24} />
-            </Link>
-            <Link href="#">
-              <Image src="/assets/twitter.svg" alt="Twitter" width={24} height={24} />
-            </Link>
+    <footer className="bg-gray-900 text-gray-300 py-10">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Left Section - Brand Name & Socials */}
+        <div className="space-y-4">
+          <h2 className="text-3xl font-bold text-white tracking-wide">
+            Fashion<span className="text-yellow-400">.com</span>
+          </h2>
+          <p className="text-sm text-gray-400">
+            Elevate your style with the latest trends.
+          </p>
+          <div className="flex space-x-4">
+            {[
+              { name: "Facebook", src: "/assets/facebook.svg" },
+              { name: "LinkedIn", src: "/assets/linkedin.svg" },
+              { name: "Instagram", src: "/assets/instagram.svg" },
+              { name: "Twitter", src: "/assets/twitter.svg" },
+            ].map((social) => (
+              <Link key={social.name} href="#" className="hover:opacity-75 transition">
+                <Image src={social.src} alt={social.name} width={28} height={28} />
+              </Link>
+            ))}
           </div>
         </div>
 
-        {/* Right Section - Contact Info */}
-        <div className="md:col-span-2 flex justify-end">
-          <div className="text-right">
-            <h3 className="text-lg font-semibold">Contact Us</h3>
-            <p className="text-sm">📞 +62 123 345 7890</p>
-            <p className="text-sm">📍 Bandung, Indonesia</p>
-            <p className="text-sm">📧 contact@apexgear.com</p>
-            <p className="text-sm">🕒 Mon - Fri: 9 AM - 6 PM</p>
-          </div>
+        {/* Middle Section - Quick Links */}
+        <div className="space-y-4 text-center">
+          <h3 className="text-lg font-semibold text-white">Quick Links</h3>
+          <ul className="space-y-2 text-sm">
+            {["Home", "Shop", "Discounts", "Our Team", "Contact Us"].map((link) => (
+              <li key={link}>
+                <Link href="#" className="hover:text-yellow-400 transition">
+                  {link}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
+
+        {/* Right Section - Contact Info */}
+        <div className="text-right space-y-4">
+          <h3 className="text-lg font-semibold text-white">Contact Us</h3>
+          <p className="text-sm">📞 <span className="text-yellow-400">+62 123 345 7890</span></p>
+          <p className="text-sm">📍 Bandung, Indonesia</p>
+          <p className="text-sm">📧 <span className="text-yellow-400">contact@fashionly.com</span></p>
+          <p className="text-sm">🕒 Mon - Fri: 9 AM - 6 PM</p>
+        </div>
+      </div>
+
+      {/* Bottom Footer */}
+      <div className="mt-10 text-center text-xs text-gray-500 border-t border-gray-700 pt-4">
+        © {new Date().getFullYear()} Fashion.com - All Rights Reserved.
       </div>
     </footer>
   );
