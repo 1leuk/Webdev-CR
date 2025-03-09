@@ -24,18 +24,15 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Middle Section - Payment Methods */}
-        <div className="flex justify-center">
-          <Image src="/assets/payment-methods.png" alt="Payment Methods" width={200} height={50} />
-        </div>
-
         {/* Right Section - Contact Info */}
-        <div>
-          <h3 className="text-lg font-semibold">Contact Us</h3>
-          <p className="text-sm">📞 +62 123 345 7890</p>
-          <p className="text-sm">📍 Bandung, Indonesia</p>
-          <p className="text-sm">📧 contact@apexgear.com</p>
-          <p className="text-sm">🕒 Mon - Fri: 9 AM - 6 PM</p>
+        <div className="md:col-span-2 flex justify-end">
+          <div className="text-right">
+            <h3 className="text-lg font-semibold">Contact Us</h3>
+            <p className="text-sm">📞 +62 123 345 7890</p>
+            <p className="text-sm">📍 Bandung, Indonesia</p>
+            <p className="text-sm">📧 contact@apexgear.com</p>
+            <p className="text-sm">🕒 Mon - Fri: 9 AM - 6 PM</p>
+          </div>
         </div>
       </div>
     </footer>

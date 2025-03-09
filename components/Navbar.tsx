@@ -31,7 +31,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto p-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold text-white">
-          BORMA open src
+          Fashion.com
         </Link>
 
         {/* Desktop Menu */}

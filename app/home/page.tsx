@@ -2,14 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-// ✅ Import Footer
 
 export default function HomePage() {
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
+    <div className="bg-[#1b1d21] text-white min-h-screen flex flex-col">
       {/* Hero Section */}
-      <section className="relative text-white py-16 px-6 mt-20">
-        {/* Background Image */}
+      <section className="relative py-16 px-6 mt-20">
         <div className="absolute inset-0 w-full h-full">
           <Image
             src="/assets/banner.jpg"
@@ -19,11 +17,9 @@ export default function HomePage() {
             priority
           />
         </div>
-
-        {/* Content */}
-        <div className="relative max-w-6xl mx-auto flex flex-col items-center text-center">
-          <h2 className="text-4xl font-bold">Latest Style For Your Fashion Needs</h2>
-          <p className="text-lg text-yellow-400 mt-2">Special Discount - 20% Off</p>
+        <div className="relative max-w-6xl mx-auto text-left">
+          <h2 className="text-4xl font-bold">Fashion Forward, Always On Trend</h2>
+          <p className="text-lg text-gray-400 mt-2">Special Discount - 20% Off</p>
           <button className="mt-6 px-6 py-3 bg-yellow-500 text-black rounded-lg font-semibold hover:bg-yellow-600">
             Shop Now
           </button>
@@ -33,18 +29,18 @@ export default function HomePage() {
       {/* Service Highlights */}
       <section className="max-w-6xl mx-auto my-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
         {[
-          { title: "Free Shipping Worldwide", desc: "Lorem ipsum is simply dummy text." },
-          { title: "24/7 Customer Service", desc: "Lorem ipsum is simply dummy text." },
-          { title: "Money Back Guarantee", desc: "Lorem ipsum is simply dummy text." },
+          { title: "Free Shipping Worldwide", desc: "Enjoy free worldwide shipping. Shop now, we’ll handle the rest." },
+          { title: "24/7 Customer Service", desc: "Our customer service team is here for you 24/7, always ready to assist." },
+          { title: "Money Back Guarantee", desc: "Shop with confidence! Money-back guarantee if you're not satisfied." },
         ].map((service, index) => (
-          <div key={index} className="p-4 bg-white shadow-md rounded-lg">
+          <div key={index} className="p-4 bg-[#2a2d33] shadow-md rounded-lg">
             <h3 className="font-bold text-lg">{service.title}</h3>
-            <p className="text-gray-600 text-sm">{service.desc}</p>
+            <p className="text-gray-400 text-sm">{service.desc}</p>
           </div>
         ))}
       </section>
 
-      {/* Category Promotions */}
+      {/* Category Promotions (UNCHANGED) */}
       <section className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 my-8">
         {[
           { title: "Fjallraven - Foldsack", img: "/assets/tas.jpg", link: "/assets" },
@@ -68,9 +64,9 @@ export default function HomePage() {
         ))}
       </section>
 
-      {/* Top Products */}
-      <section className="max-w-6xl mx-auto my-12 flex-grow">
-        <h2 className="text-2xl font-bold">Top Products</h2>
+      {/* Top Products Section */}
+      <section className="max-w-6xl mx-auto my-12">
+        <h2 className="text-2xl font-bold text-center">Top Products</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
           {[
             { name: "Solid Gold Petite Micropave", price: "$168.00", img: "/assets/cincin1.jpg" },
@@ -78,7 +74,7 @@ export default function HomePage() {
             { name: "Pierced Owl Rose Gold Plated Stainless Steel Double", price: "$10.99", img: "/assets/anting.jpg" },
             { name: "Fjallraven - Foldsack No. 1 Backpack", price: "$109.95", img: "/assets/tas.jpg" },
           ].map((product, index) => (
-            <div key={index} className="bg-white p-4 shadow-md rounded-lg">
+            <div key={index} className="bg-[#2a2d33] p-4 shadow-md rounded-lg text-center">
               <Image 
                 src={product.img} 
                 alt={product.name} 
@@ -87,12 +83,11 @@ export default function HomePage() {
                 className="w-full h-40 object-cover rounded-md" 
               />
               <h3 className="text-lg font-bold mt-2">{product.name}</h3>
-              <p className="text-blue-600 font-semibold">{product.price}</p>
+              <p className="text-yellow-400 font-semibold">{product.price} USD</p>
             </div>
           ))}
         </div>
       </section>
-
     </div>
   );
 }
