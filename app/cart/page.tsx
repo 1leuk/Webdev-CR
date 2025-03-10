@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/button";
 import useCartStore from "@/store/cartStore";
@@ -7,51 +6,13 @@ import useCartStore from "@/store/cartStore";
 export default function Cart() {
   const router = useRouter();
   const { items, removeFromCart, updateQty } = useCartStore((state) => state);
-  const [couponCode, setCouponCode] = useState("");
-  const [discount, setDiscount] = useState(0);
-  const [appliedCoupon, setAppliedCoupon] = useState("");
-  const [couponError, setCouponError] = useState("");
-
-  const availableCoupons: { [key: string]: number } = {
-    SAVE10: 0.1,
-    SAVE20: 0.2,
-    WELCOME: 0.15,
-    FREESHIP: 0.05,
-  };
 
   const subtotal = items.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
-  const discountAmount = subtotal * discount;
-  const discountedSubtotal = subtotal - discountAmount;
-  const tax = discountedSubtotal * 0.1;
-  const total = discountedSubtotal + tax;
-
-  const handleApplyCoupon = () => {
-    setCouponError("");
-
-    if (couponCode.trim() === "") {
-      setCouponError("Please enter a coupon code");
-      return;
-    }
-
-    const discountRate = availableCoupons[couponCode.toUpperCase()];
-    if (discountRate) {
-      setDiscount(discountRate);
-      setAppliedCoupon(couponCode.toUpperCase());
-      setCouponCode("");
-    } else {
-      setCouponError("Invalid coupon code");
-      setDiscount(0);
-      setAppliedCoupon("");
-    }
-  };
-
-  const handleRemoveCoupon = () => {
-    setDiscount(0);
-    setAppliedCoupon("");
-  };
+  const tax = subtotal * 0.1;
+  const total = subtotal + tax;
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-200 px-6 py-12">
@@ -133,54 +94,15 @@ export default function Cart() {
 
             {/* Order Summary */}
             <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-              <h2 className="text-2xl font-bold text-white mb-4">Order Summary</h2>
-
-              {/* Coupon Section */}
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold">Apply Discount</h3>
-                {appliedCoupon ? (
-                  <div className="flex justify-between bg-green-500 p-2 rounded-md">
-                    <span className="font-bold text-white">{appliedCoupon}</span>
-                    <Button
-                      onClick={handleRemoveCoupon}
-                      className="text-white hover:text-gray-200"
-                    >
-                      Remove
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="flex">
-                  <input
-                    type="text"
-                    value={couponCode}
-                    onChange={(e) => setCouponCode(e.target.value)}
-                    placeholder="Enter coupon code"
-                    className="flex-grow p-2 bg-gray-700 text-white rounded-full focus:outline-none"
-                  />
-                  <Button
-                    onClick={handleApplyCoupon}
-                    className="bg-blue-500 hover:bg-blue-600 text-white px-4 ml-2 rounded-full"
-                  >
-                    Apply
-                  </Button>
-                </div>
-
-                )}
-                {couponError && <p className="text-red-400 mt-2">{couponError}</p>}
-              </div>
+              <h2 className="text-2xl font-bold text-white mb-4">
+                Order Summary
+              </h2>
 
               {/* Order Details */}
               <div className="flex justify-between mb-2">
                 <span>Subtotal</span>
                 <span>${subtotal.toFixed(2)}</span>
               </div>
-
-              {discount > 0 && (
-                <div className="flex justify-between mb-2 text-green-400">
-                  <span>Discount ({discount * 100}%)</span>
-                  <span>-${discountAmount.toFixed(2)}</span>
-                </div>
-              )}
 
               <div className="flex justify-between mb-2">
                 <span>Tax</span>
