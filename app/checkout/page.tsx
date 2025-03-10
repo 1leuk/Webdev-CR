@@ -114,20 +114,30 @@ export default function CheckoutPage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    toast.loading("Processing your order...");
-
-    setTimeout(() => {
-      toast.dismiss();
-      toast.success("Order placed successfully!");
-
+    const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+    
+      toast.loading("Processing your order...");
+    
       setTimeout(() => {
-        router.push("/checkout/success");
-      }, 1500);
-    }, 2000);
-  };
+        toast.dismiss();
+        toast.success("Order placed successfully!");
+    
+        setTimeout(() => {
+          const invoiceId = Math.floor(100000 + Math.random() * 900000); // Generate a 6-digit invoice ID
+          const queryParams = new URLSearchParams({
+            total: total.toFixed(2),
+            items: JSON.stringify(items), // Encode cart items
+            invoiceId: invoiceId.toString(), // Add the invoice ID
+            email: formData.email, // Add the email from the checkout form
+          }).toString();
+    
+          router.push(`/checkout/success?${queryParams}`);
+        }, 1500);
+      }, 2000);
+    };
+  
+  
 
   if (items.length === 0) {
     return (
