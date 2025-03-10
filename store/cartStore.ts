@@ -26,7 +26,7 @@ const useCartStore = create<CartSate>()(
         const existingProduct = get().items.find(
           (item) => item.id === product.id
         );
-        
+
         if (existingProduct) {
           // If product already exists, increment quantity
           get().updateQty("increment", product.id);
@@ -41,7 +41,7 @@ const useCartStore = create<CartSate>()(
                 id: product.id,
                 title: product.title,
                 price: product.price,
-                image: product.image, // Updated to match new API structure
+                image: product.image, // matching dengan API structure
               },
             ],
           });
@@ -59,7 +59,7 @@ const useCartStore = create<CartSate>()(
         if (!item) {
           return;
         }
-        
+
         if (item.quantity === 1 && type === "decrement") {
           get().removeFromCart(id);
         } else {

@@ -5,7 +5,6 @@ import { Button } from "@/components/button";
 import { FiCopy, FiExternalLink } from "react-icons/fi";
 import useCartStore from "@/store/cartStore";
 
-// Define the coupon type structure
 interface Coupon {
   code: string;
   discountRate: number;
@@ -26,7 +25,7 @@ export default function DiscountsPage() {
   // Available coupons
   const [coupons] = useState<Coupon[]>([
     {
-      code: "SAVE10",
+      code: "MARET10",
       discountRate: 0.1,
       description: "Get 10% off your entire order with no minimum purchase",
       expiryDate: "2025-06-30",
@@ -34,7 +33,7 @@ export default function DiscountsPage() {
       category: "general",
     },
     {
-      code: "SAVE20",
+      code: "MARET20",
       discountRate: 0.2,
       description: "Get 20% off when you spend $100 or more",
       expiryDate: "2025-05-15",
@@ -42,7 +41,7 @@ export default function DiscountsPage() {
       category: "general",
     },
     {
-      code: "WELCOME",
+      code: "KELOMPOK1",
       discountRate: 0.15,
       description: "New customer? Get 15% off your first order",
       expiryDate: null,
@@ -50,7 +49,7 @@ export default function DiscountsPage() {
       category: "new customers",
     },
     {
-      code: "FREESHIP",
+      code: "GRATIS",
       discountRate: 0.05,
       description: "5% discount on all orders, no minimum required",
       expiryDate: "2025-04-01",
@@ -58,32 +57,28 @@ export default function DiscountsPage() {
       category: "shipping",
     },
     {
-      code: "SPRING25",
+      code: "CPS",
       discountRate: 0.25,
-      description: "Spring sale! 25% off when you spend $150 or more",
+      description: "25% off when you spend $150 or more",
       expiryDate: "2025-05-31",
       minPurchase: 150,
       category: "seasonal",
     },
   ]);
 
-  // Track copied coupon code for showing feedback
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
-  // Copy coupon code to clipboard
   const copyToClipboard = (code: string) => {
     navigator.clipboard.writeText(code);
     setCopiedCode(code);
     setTimeout(() => setCopiedCode(null), 2000);
   };
 
-  // Check if coupon is applicable to current cart
   const isCouponApplicable = (minPurchase: number | null) => {
     if (!minPurchase) return true;
     return cartTotal >= minPurchase;
   };
 
-  // Group coupons by category
   const groupedCoupons = coupons.reduce((acc, coupon) => {
     if (!acc[coupon.category]) {
       acc[coupon.category] = [];
@@ -185,7 +180,7 @@ export default function DiscountsPage() {
                           disabled={!isApplicable}
                         >
                           <FiExternalLink className="mr-2" />
-                          Apply to Cart
+                          Checkout
                         </Button>
                       </div>
                     </div>
