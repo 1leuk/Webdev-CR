@@ -22,27 +22,28 @@ export default function LandingPage() {
         className="relative z-10 text-center max-w-xl px-6"
       >
         <h1 className="text-5xl font-extrabold bg-gradient-to-r from-yellow-400 to-yellow-600 text-transparent bg-clip-text">
-          Welcome to Our Store
+          Welcome to Fashion.com
         </h1>
         <p className="text-lg text-gray-300 mt-4">
           Discover exclusive products, unbeatable deals, and a seamless shopping experience.
         </p>
 
         {/* Buttons */}
-        <div className="mt-8 flex space-x-4">
-          <button
-            className="px-6 py-3 text-black font-semibold bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
-            onClick={() => router.push("/team")}
-          >
-            Know the Team
-          </button>
-          <button
-            className="px-6 py-3 text-white font-semibold bg-gray-800 rounded-lg shadow-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
-            onClick={() => router.push("/home")}
-          >
-            Go to Homepage
-          </button>
-        </div>
+        <div className="mt-8 flex justify-center space-x-4">
+  <button
+    className="px-6 py-3 text-black font-semibold bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg"
+    onClick={() => router.push("/team")}
+  >
+    Know the Team
+  </button>
+  <button
+    className="px-6 py-3 text-white font-semibold bg-gray-800 rounded-lg shadow-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+    onClick={() => router.push("/home")}
+  >
+    Go to Homepage
+  </button>
+</div>
+
       </motion.div>
 
       {/* Decorative Bottom Glow */}

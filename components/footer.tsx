@@ -15,12 +15,18 @@ export default function Footer() {
           </p>
           <div className="flex space-x-4">
             {[
-              { name: "Facebook", src: "/assets/facebook.svg" },
-              { name: "LinkedIn", src: "/assets/linkedin.svg" },
-              { name: "Instagram", src: "/assets/instagram.svg" },
-              { name: "Twitter", src: "/assets/twitter.svg" },
+              { name: "Facebook", src: "/assets/facebook.svg", url: "https://facebook.com" },
+              { name: "LinkedIn", src: "/assets/linkedin.svg", url: "https://linkedin.com" },
+              { name: "Instagram", src: "/assets/instagram.svg", url: "https://instagram.com" },
+              { name: "Twitter", src: "/assets/twitter.svg", url: "https://twitter.com" },
             ].map((social) => (
-              <Link key={social.name} href="#" className="hover:opacity-75 transition">
+              <Link
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-75 transition"
+              >
                 <Image src={social.src} alt={social.name} width={28} height={28} />
               </Link>
             ))}
