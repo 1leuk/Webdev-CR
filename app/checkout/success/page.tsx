@@ -1,16 +1,33 @@
 "use client";
 
-import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { FiCheckCircle } from "react-icons/fi";
 
 export default function SuccessPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  
+  const [email, setEmail] = useState("your email");
+  const [invoiceId, setInvoiceId] = useState("######");
+  const [total, setTotal] = useState("0.00");
+  const [items, setItems] = useState<any[]>([]);
 
-  const email = searchParams.get("email") || "your email";
-  const invoiceId = searchParams.get("invoiceId") || "######";
-  const total = searchParams.get("total") || "0.00";
-  const items = searchParams.get("items") ? JSON.parse(searchParams.get("items")!) : [];
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const searchParams = new URLSearchParams(window.location.search);
+      
+      setEmail(searchParams.get("email") || "your email");
+      setInvoiceId(searchParams.get("invoiceId") || "######");
+      setTotal(searchParams.get("total") || "0.00");
+
+      try {
+        const cartItems = searchParams.get("items");
+        setItems(cartItems ? JSON.parse(cartItems) : []);
+      } catch (error) {
+        console.error("Failed to parse cart items:", error);
+      }
+    }
+  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0a0f1e] text-gray-300 px-4">
@@ -34,7 +51,7 @@ export default function SuccessPage() {
           <h2 className="text-lg font-semibold text-gray-200">Order Summary</h2>
           <div className="mt-4 space-y-3">
             {items.length > 0 ? (
-              items.map((item: any, index: number) => (
+              items.map((item, index) => (
                 <div key={index} className="flex items-center justify-between bg-[#0a0f1e] p-3 rounded-md">
                   <div className="flex items-center space-x-3">
                     <img src={item.img} alt={item.title} className="h-12 w-12 rounded-md object-cover" />
