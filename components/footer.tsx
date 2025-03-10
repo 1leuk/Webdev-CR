@@ -34,18 +34,25 @@ export default function Footer() {
         </div>
 
         {/* Middle Section - Quick Links */}
-        <div className="space-y-4 text-center">
-          <h3 className="text-lg font-semibold text-white">Quick Links</h3>
-          <ul className="space-y-2 text-sm">
-            {["Home", "Shop", "Discounts", "Our Team", "Contact Us"].map((link) => (
-              <li key={link}>
-                <Link href="#" className="hover:text-yellow-400 transition">
-                  {link}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+              <div className="space-y-4 text-center">
+        <h3 className="text-lg font-semibold text-white">Quick Links</h3>
+        <ul className="space-y-2 text-sm">
+          {[
+            { name: "Home", path: "/app/home" },
+            { name: "Shop", path: "/app/home/shop" },
+            { name: "Discounts", path: "/app/discount" },
+            { name: "Our Team", path: "/app/team" },
+            { name: "Contact Us", path: "/app/contact" },
+          ].map((link) => (
+            <li key={link.name}>
+              <Link href={link.path} className="hover:text-yellow-400 transition">
+                {link.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
 
         {/* Right Section - Contact Info */}
         <div className="text-right space-y-4">
