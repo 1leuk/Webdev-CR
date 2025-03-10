@@ -38,11 +38,11 @@ export default function Footer() {
         <h3 className="text-lg font-semibold text-white">Quick Links</h3>
         <ul className="space-y-2 text-sm">
           {[
-            { name: "Home", path: "/app/home" },
-            { name: "Shop", path: "/app/home/shop" },
-            { name: "Discounts", path: "/app/discount" },
-            { name: "Our Team", path: "/app/team" },
-            { name: "Contact Us", path: "/app/contact" },
+            { name: "Home", path: "/home" },
+            { name: "Shop", path: "/home/shop" },
+            { name: "Discounts", path: "/discount" },
+            { name: "Our Team", path: "/team" },
+            { name: "Contact Us", path: "/home" },
           ].map((link) => (
             <li key={link.name}>
               <Link href={link.path} className="hover:text-yellow-400 transition">
