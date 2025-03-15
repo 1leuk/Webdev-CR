@@ -16,7 +16,7 @@ export default function Navbar() {
   // Detect scroll position
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50); // If scrolled more than 50px, set background
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -25,43 +25,46 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 text-white transition-all ${
-        isScrolled ? "bg-gray-900 bg-opacity-90 shadow-lg" : "bg-gray-900"
+        isScrolled ? "bg-gray-900 bg-opacity-95 shadow-md" : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto p-4 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-white">
-          BORMA open src
+        <Link href="/" className="text-3xl font-bold tracking-wide">
+          Fashion<span className="text-yellow-400">.com</span>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:flex items-center space-x-8">
           {[
             { name: "Home", path: "/home" },
             { name: "Shop", path: "/home/shop" },
+            { name: "Discount", path: "/discount" },
             { name: "Team", path: "/team" },
           ].map((item) => (
             <Link
               key={item.path}
               href={item.path}
-              className={`hover:text-yellow-400 transition ${
-                pathname === item.path ? "text-yellow-400" : ""
+              className={`relative font-medium transition duration-300 ${
+                pathname === item.path
+                  ? "text-yellow-400"
+                  : "text-gray-300 hover:text-yellow-400"
               }`}
             >
               {item.name}
             </Link>
           ))}
-          
+
           {/* Cart Icon */}
           <Link
             href="/cart"
-            className="relative flex items-center hover:text-yellow-400 transition group"
+            className="relative flex items-center group"
             aria-label="Shopping Cart"
           >
-            <div className="relative p-2 rounded-full bg-yellow-500 bg-opacity-0 group-hover:bg-opacity-20 transition-all">
+            <div className="relative p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-all">
               <FiShoppingCart className="text-2xl" />
               {cartItemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-yellow-500 text-gray-900 rounded-full text-xs font-bold flex items-center justify-center min-w-5 h-5 px-1">
+                <span className="absolute -top-1 -right-2 bg-yellow-500 text-gray-900 rounded-full text-xs font-bold flex items-center justify-center min-w-5 h-5 px-1 shadow-md">
                   {cartItemCount}
                 </span>
               )}
@@ -69,24 +72,20 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Menu Button and Cart Icon */}
+        {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center space-x-4">
           {/* Cart Icon for Mobile */}
-          <Link
-            href="/cart"
-            className="relative flex items-center hover:text-yellow-400 transition"
-            aria-label="Shopping Cart"
-          >
-            <div className="relative p-1">
+          <Link href="/cart" className="relative flex items-center" aria-label="Shopping Cart">
+            <div className="relative p-2 hover:text-yellow-400 transition">
               <FiShoppingCart className="text-2xl" />
               {cartItemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-yellow-500 text-gray-900 rounded-full text-xs font-bold flex items-center justify-center min-w-5 h-5 px-1">
+                <span className="absolute -top-1 -right-2 bg-yellow-500 text-gray-900 rounded-full text-xs font-bold flex items-center justify-center min-w-5 h-5 px-1 shadow-md">
                   {cartItemCount}
                 </span>
               )}
             </div>
           </Link>
-          
+
           {/* Menu Toggle */}
           <button className="text-2xl text-white" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <FiX /> : <FiMenu />}
@@ -95,24 +94,38 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden flex flex-col space-y-4 mt-2 bg-gray-800 p-4 rounded-b-lg">
-          {[
-            { name: "Home", path: "/home" },
-            { name: "Shop", path: "/home/shop" },
-            { name: "Team", path: "/team" },
-          ].map((item) => (
-            <Link
-              key={item.path}
-              href={item.path}
-              className="hover:text-yellow-400 transition text-white"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
+      <div
+        className={`fixed inset-0 bg-black bg-opacity-70 backdrop-blur-lg transform transition-all ${
+          isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+        } md:hidden`}
+      >
+        <div className="absolute right-0 w-64 bg-gray-900 shadow-lg h-full flex flex-col p-6">
+          <button
+            className="text-3xl text-white self-end"
+            onClick={() => setIsOpen(false)}
+          >
+            <FiX />
+          </button>
+
+          <nav className="mt-6 flex flex-col space-y-6">
+            {[
+              { name: "Home", path: "/home" },
+              { name: "Shop", path: "/home/shop" },
+              { name: "Discount", path: "/discount" },
+              { name: "Team", path: "/team" },
+            ].map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                className="text-lg text-gray-300 hover:text-yellow-400 transition"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
         </div>
-      )}
+      </div>
     </nav>
   );
 }

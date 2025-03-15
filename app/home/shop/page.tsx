@@ -45,14 +45,14 @@ export default function ShopPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-[#1b1d21] text-white">
         <div className="text-xl">Loading products...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen p-8 pt-24">
+    <div className="min-h-screen p-8 pt-24 bg-[#1b1d21] text-white">
       <Toaster position="top-right" />
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold mb-6 text-center">Shop Our Products</h1>
@@ -62,7 +62,7 @@ export default function ShopPage() {
           {categories.map((category) => (
             <button
               key={category}
-              className="px-4 py-2 bg-gray-200 rounded-full text-gray-800 hover:bg-gray-300 transition"
+              className="px-4 py-2 bg-[#2a2d33] rounded-full text-white hover:bg-gray-700 transition"
             >
               {category}
             </button>
@@ -75,10 +75,10 @@ export default function ShopPage() {
             products.map((product) => (
               <div
                 key={product.id}
-                className="bg-white p-4 rounded-lg shadow-md cursor-pointer transition hover:shadow-lg"
+                className="bg-[#2a2d33] p-4 rounded-lg shadow-md cursor-pointer transition hover:shadow-lg"
                 onClick={() => handleViewProduct(product.id)}
               >
-                <div className="relative h-48 mb-4 rounded-md overflow-hidden bg-gray-100 flex items-center justify-center">
+                <div className="relative h-48 mb-4 rounded-md overflow-hidden bg-[#3b3f45] flex items-center justify-center">
                   <img
                     src={product.image}
                     alt={product.title}
@@ -88,7 +88,7 @@ export default function ShopPage() {
                 <div className="h-16">
                   <h3 className="text-lg font-semibold line-clamp-2">{product.title}</h3>
                 </div>
-                <div className="flex items-center text-sm text-gray-500 mb-2">
+                <div className="flex items-center text-sm text-gray-400 mb-2">
                   <span className="capitalize">{product.category}</span>
                   <span className="mx-2">•</span>
                   <div className="flex items-center">
@@ -98,17 +98,17 @@ export default function ShopPage() {
                     <span className="ml-1">{product.rating.rate}</span>
                   </div>
                 </div>
-                <p className="text-xl font-bold text-gray-800 mt-1 mb-3">${product.price.toFixed(2)}</p>
+                <p className="text-xl font-bold text-white mt-1 mb-3">${product.price.toFixed(2)}</p>
                 <div className="flex mt-4 space-x-2">
                   <Button
-                    className="flex-grow"
+                    className="flex-grow border border-white text-white"
                     onClick={(e) => handleViewProduct(product.id)}
                     variant="outline"
                   >
                     View Details
                   </Button>
                   <Button
-                    className="flex-grow"
+                    className="flex-grow bg-yellow-500 text-black hover:bg-yellow-600"
                     onClick={(e) => handleAddToCart(product, e)}
                   >
                     Add to Cart
@@ -117,7 +117,7 @@ export default function ShopPage() {
               </div>
             ))
           ) : (
-            <div className="col-span-full text-center text-xl text-gray-500">
+            <div className="col-span-full text-center text-xl text-gray-400">
               No products found
             </div>
           )}
