@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/button";
@@ -20,7 +20,7 @@ export default function DiscountsPage() {
   const cartTotal = items.reduce(
     (total, item) => total + item.price * item.quantity,
     0
-  );
+  ); 
 
   // Available coupons
   const [coupons] = useState<Coupon[]>([
